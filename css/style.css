@@ -2,11 +2,16 @@
     box-sizing: border-box;
 }
 
-.landing{
+body {
+    font-family:"Open Sans", sans-serif;
+    background-color:#9AFF68;
+}
+
+body .landing{
     background-image:url("../img/landing-mobile.jpg");
     /*image does not work well with phones not in 9:16 aspect ratio*/
     background-size:cover;
-    font-family:"Open Sans", sans-serif;
+    
 }
 
 .flex-item-landing-2 {
@@ -33,6 +38,17 @@ h2 {
 }
 
 
+.main-1{
+    background-color:#9AFF68;
+}
+
+.main-2 {
+    background-color:#00e863;
+}
+
+form {
+    padding:1rem;
+}
 
 
 @media (min-width:720px) { 
