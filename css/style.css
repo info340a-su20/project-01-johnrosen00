@@ -7,7 +7,7 @@ body {
     background-color:#9AFF68;
 }
 
-body .landing{
+.landing{
     background-image:url("../img/landing-mobile.jpg");
     /*image does not work well with phones not in 9:16 aspect ratio*/
     background-size:cover;
@@ -28,6 +28,7 @@ h1{
     text-shadow:0.1px 1px black;
     margin-bottom:.1rem;
 }
+
 
 h2 {
     font-weight:300;
@@ -50,6 +51,9 @@ form {
     padding:1rem;
 }
 
+.container {
+    background-color:none!important;
+}
 
 @media (min-width:720px) { 
     html {

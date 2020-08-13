@@ -10,17 +10,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<nav class="jumbotron">
-  <div id="hamburger-menu"><a href="#"><i class="fa fa-bars" aria-label="menu"></i></a></div>
-  <div id="nav-menu">
-      <a href="main.html">main</a>
-      <a href="#">old</a>
-      <a href="#">analysis</a>
-  </div>
-</nav>
-<body>
-    <div class="container">
-      <section class="main-1">
+
+<body class="container">
+    <header>
+      <h1 style="color:black">Yokenote</h1> <!--Style pending-->
+    </header>
+    <div class="jumbotron jumbotron-fluid" >
+      <!--Form section-->
+      <section class="container" class="main-1">
+
+          <h2 style="color:black">Enter today's workout</h2>
           <form id="signUpForm" class="form" novalidate>
             <div class="form-group row">
               <label for="workoutType" class="col-lg-1">Workout Type</label>
@@ -45,14 +44,26 @@
               <div class="col-lg-11">
                 <input type="date" id="dateInput" class="form-control" required>
               </div>
-            </div>
+
             <!--got the form code from problem set 5.-->
-            <button type="submit" class="btn btn-dark">Submit Workout</button>
+            <button type="submit" class="btn btn-dark m-3">Submit Workout</button>
         </form>
       </section>
-      <section class="main-2">
-        <!--view goes here-->
+      <section class="container-fluid"  class="main-2"> 
+        <!--View section-->
+        <div class="row">
+          <div class="col-md p-3">
+            <img src="img/graph.jpg" alt="graph placeholder" class="mx-auto d-block">
+          </div>
+
+          <div class="col-md p-3">
+            <img src="img/table.jpg" alt="table placeholder" class="mx-auto d-block">
+          </div>
+        </div>
       </section>
     </div>
+    <footer>
+      <p>&copy; 2020 John Rosen, Jack Weinstein</p>
+    </footer>
 </body>
 </html>
