@@ -1,0 +1,22 @@
+[
+    {"type":"Hack Squat", "weight":225, "sets":5, "reps":8, "date":"2019-05-22"},
+    {"type":"Squat", "weight":315, "sets":5, "reps":5, "date":"2019-05-25"},
+    {"type":"Leg Press", "weight":540, "sets":3, "reps":8, "date":"2019-05-27"},
+    {"type":"Deadlift", "weight":405, "sets":3, "reps":5, "date":"2019-05-29"},
+    {"type":"Squat", "weight":225, "sets":5, "reps":5, "date":"2019-05-31"},
+    {"type":"Isometric Leg Press", "weight":275, "sets":4, "reps":10, "date":"2019-06-02"},
+    {"type":"Deadlift", "weight":365, "sets":3, "reps":6, "date":"2019-06-04"},
+    {"type":"Leg Extensions", "weight":130, "sets":5, "reps":10, "date":"2019-06-06"},
+    {"type":"Squat", "weight":225, "sets":5, "reps":5, "date":"2019-06-08"},
+    {"type":"Squat", "weight":225, "sets":5, "reps":5, "date":"2019-06-10"},
+    {"type":"Front Squat", "weight":265, "sets":5, "reps":5, "date":"2019-06-12"},
+    {"type":"Squat", "weight":315, "sets":5, "reps":6, "date":"2019-06-14"},
+    {"type":"Calf Raises", "weight":225, "sets":3, "reps":20, "date":"2019-06-16"},
+    {"type":"Deadlift", "weight":415, "sets":3, "reps":4, "date":"2019-06-18"},
+    {"type":"Squat", "weight":275, "sets":3, "reps":10, "date":"2019-06-20"},
+    {"type":"Hack Squat", "weight":275, "sets":4, "reps":6, "date":"2019-06-22"},
+    {"type":"Deadlift", "weight":365, "sets":3, "reps":6, "date":"2019-06-24"},
+    {"type":"Leg Extensions", "weight":130, "sets":5, "reps":10, "date":"2019-06-26"},
+    {"type":"Front Squat", "weight":275, "sets":5, "reps":5, "date":"2019-06-28"},
+    {"type":"Squat", "weight":365, "sets":2, "reps":4, "date":"2019-06-30"} 
+  ]

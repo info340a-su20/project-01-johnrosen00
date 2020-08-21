@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="author" content="John Rosen">
-  <meta name="description" content="Static mockup of Yokenote's Landing">
+  <meta name="description" content="Main page">
   <title>Yokenote</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300i,300,400,400i,600,600i,700,800">
@@ -21,36 +21,49 @@
     </header>
     <div class="jumbotron jumbotron-fluid" >
       <!--Form section-->
-      <section class="container" class="main-1">
-
+      <section class="container p-5" class="main-1">
           <h2 style="color:black">Enter today's workout</h2>
           <form id="signUpForm" class="form" novalidate>
             <div class="form-group row">
               <label for="workoutType" class="col-lg-1">Workout Type</label>
-              <div class="col-lg-11">
+              <div class="col-lg-6">
                 <input type="workoutType" id="workoutInput" class="form-control" required>
               </div>
             </div>
             <div class="form-group row">
-              <label for="amount-done" class="col-lg-1">Amount Done</label>
-              <div class="col-lg-11">
-                <input type="amount-done" id="amount-done" class="form-control" required>
+              <label for="weight" class="col-lg-1">Weight</label>
+              <div class="col-lg-6">
+                <input type="weight" id="weight" class="form-control" required>
               </div>
             </div>
-            <div class="form-group row">
-              <label for="set-rep" class="col-lg-1">Sets and Reps</label>
-              <div class="col-lg-11">
-                <input type="set-rep" id="set-rep" class="form-control" >
+            <div class="form-group row ">
+              <label for="set" class="col-lg-1">Sets</label>
+              <div class="form-group column">
+                
+                <div class="col-lg-6">
+                  <input type="set" id="set" class="form-control" >
+                </div>
               </div>
+              <label for="reps" class="col-lg-1">Reps</label>
+              <div class="form-group column">
+                
+                <div class="col-lg-6">
+                  
+                  <input type="reps" id="reps" class="form-control" >
+                </div>
+              </div>
+
             </div>
             <div class="form-group row">
               <label for="dateInput" class="col-lg-1">Date Completed</label>
-              <div class="col-lg-11">
+              <div class="col-lg-6">
                 <input type="date" id="dateInput" class="form-control" required>
               </div>
-
+              </div>
             <!--got the form code from problem set 5.-->
+            
             <button type="submit" class="btn btn-dark m-3">Submit Workout</button>
+            
         </form>
       </section>
       <section class="container-fluid"  class="main-2"> 
