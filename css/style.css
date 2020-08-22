@@ -7,7 +7,9 @@ body {
     background-color:#9AFF68;
 }
 
-
+td {
+    text-align:center;
+}
 .landing{
     background-image:url("../img/landing-mobile.jpg");
     /*image does not work well with phones not in 9:16 aspect ratio*/

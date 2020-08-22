@@ -13,6 +13,8 @@
   <link rel="icon" 
       type="image/png" 
       href="img/favicon.png">
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  
 </head>
 
 <body class="container">
@@ -62,22 +64,24 @@
               </div>
             <!--got the form code from problem set 5.-->
             
-            <button type="submit" class="btn btn-dark m-3">Submit Workout</button>
+            <button id="submit-button" type="submit" class="btn btn-dark m-3">Submit Workout</button>
             
         </form>
       </section>
       <section class="container-fluid"  class="main-2"> 
         <!--View section-->
         <div class="row">
-          <div class="col-md p-3">
+          <div id="views" class="col-md p-3 container">
             <img src="img/graph.jpg" alt="graph placeholder" class="mx-auto d-block">
           </div>
 
           <div class="col-md p-3">
-            <img src="img/table.jpg" alt="table placeholder" class="mx-auto d-block">
+            <button id="graph-button" type="graph" class="btn btn-dark m-3 mx-auto d-block">Show Graph of Progress</button>
+            <button id="frequency-button" type="frequency" class="btn btn-dark m-3 mx-auto d-block">Interpret Workout History</button>
           </div>
         </div>
       </section>
+      
     </div>
     <footer>
       <p>&copy; 2020 John Rosen, Jack Weinstein</p>
@@ -86,5 +90,8 @@
       <p>&copy; <cite><a href="https://unsplash.com/photos/h4i9G-de7Po">John Arano</a></cite> </p>
       <p>&copy; <cite><a href="https://pixabay.com/photos/bodybuilder-muscles-fitness-925770/">StockSnap</a></cite></p>
     </footer>
+    <script src="./src/index.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.2.8/es6-promise.min.js"></script>
 </body>
 </html>

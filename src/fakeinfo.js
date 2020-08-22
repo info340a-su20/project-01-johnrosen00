@@ -1,4 +1,4 @@
-[
+export default [
     {"type":"Hack Squat", "weight":225, "sets":5, "reps":8, "date":"2019-05-22"},
     {"type":"Squat", "weight":315, "sets":5, "reps":5, "date":"2019-05-25"},
     {"type":"Leg Press", "weight":540, "sets":3, "reps":8, "date":"2019-05-27"},
