@@ -1,16 +1,63 @@
 'use strict';
 
-
-let emptyState = {type:"", weight:0, sets:0, reps:0, date:""}
+//initial state
+function blah() {
+    let ret = fetch("https://raw.githubusercontent.com/info340a-su20/project-01-johnrosen00/master/src/fakeinfo.js");
+    return ret;
+}
 
 let state = {
-    current:emptyState,
+    current:{type:"", weight:0, sets:0, reps:0, date:""},
     history:accessHistory()
 };
 
+renderFreqTable();
+//handle form:
+
+let formElements = {
+    type:document.querySelector("#workoutInput"),
+    weight:document.querySelector("#weightInput"),
+    sets:document.querySelector("#setsInput"),
+    reps:document.querySelector("#repsInput"),
+    date:document.querySelector("#dateInput")
+}
+
+let liftKeys = ["type", "weight", "sets", "reps", "date"];
+//object.keys() does not work in a lot of browsers apparently :(
+
+let form = document.querySelector("form");
+let submit = document.querySelector("#submit-button");
 
 
+for(let i = 0; i < liftKeys.length; i++) {
+    formElements[liftKeys[i]].addEventListener("input",
+        ()=>{
+            state.current[liftKeys[i]] = formElements[liftKeys[i]].value;
+            renderInput(liftKeys[i]);
+        }
+    );
+}
 
+submit.addEventListener("click", (event)=> {
+    event.preventDefault();
+    state.history.push(state.current);
+    state.current={type:"", weight:0, sets:0, reps:0, date:""};
+    form.reset();
+    renderFreqTable();
+});
+
+function renderInput(item) {
+    formElements[item].value = state.current[item];
+    console.log("form elem " + formElements[item]);
+}
+
+function renderAllInputs(){
+    for(let i = 0; i < liftKeys.length; i++) {
+        formElements[liftKeys[i]].value = state.current[liftKeys[i]];
+    }
+}
+
+//handle buttons
 /*
 let g = document.querySelector("#graph-button");
 //graphbutton
@@ -29,6 +76,8 @@ frequencyButton.addEventListener("click",(event) => {
 });
 
 
+
+//handle "past" data
 function accessHistory(){
 //     let ret = fetch("https://raw.githubusercontent.com/info340a-su20/project-01-johnrosen00/master/src/fakeinfo.json")
 //         .then(
@@ -64,10 +113,11 @@ function accessHistory(){
     return lifts;
 }
 
-function addLift() {
-    state.history.push(state.current);
-    state.current = emptyState;
-}
+
+
+
+//handle views:
+
 /*
 function renderGraph(){
     viewContent.innerHTML = "";
@@ -75,6 +125,7 @@ function renderGraph(){
 }*/
 
 function renderFreqTable(){
+    //big boy
     document.querySelector("#views").innerHTML = "";
 
     let uniqueKeys = [];
@@ -124,7 +175,7 @@ function renderFreqTable(){
     table.classList.add("table");
     table.classList.add("table-dark");
     
-    
+    //table head
     let head = document.createElement("thead");
     let row1 = document.createElement("tr");
     let colHead1 = document.createElement("th");
@@ -142,7 +193,8 @@ function renderFreqTable(){
     row1.appendChild(colHead3)
     head.appendChild(row1);
     table.appendChild(head);
-
+    
+    //table body
     let body = document.createElement("tbody");
 
     uniqueKeys.forEach(
@@ -153,9 +205,6 @@ function renderFreqTable(){
 
             let currentFreq = freq[item];
             let currentWeight = weight[item];
-            console.log(item);
-            console.log(currentFreq);
-            console.log(currentWeight);
             let freqCell = document.createElement("td");
             freqCell.textContent = currentFreq;
 
@@ -171,6 +220,7 @@ function renderFreqTable(){
     )
     
     table.appendChild(body);
-
+    
+    //render table
     document.querySelector("#views").appendChild(table);
 }
