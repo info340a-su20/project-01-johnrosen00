@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="author" content="John Rosen">
-  <meta name="description" content="Static mockup of Yokenote's Landing">
+  <meta name="description" content="Main page">
   <title>Yokenote</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300i,300,400,400i,600,600i,700,800">
@@ -13,6 +13,8 @@
   <link rel="icon" 
       type="image/png" 
       href="img/favicon.png">
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  
 </head>
 
 <body class="container">
@@ -21,50 +23,62 @@
     </header>
     <div class="jumbotron jumbotron-fluid" >
       <!--Form section-->
-      <section class="container" class="main-1">
-
+      <section class="container p-5" class="main-1">
           <h2 style="color:black">Enter today's workout</h2>
           <form id="signUpForm" class="form" novalidate>
             <div class="form-group row">
               <label for="workoutType" class="col-lg-1">Workout Type</label>
-              <div class="col-lg-11">
+              <div class="col-lg-6">
                 <input type="workoutType" id="workoutInput" class="form-control" required>
               </div>
             </div>
             <div class="form-group row">
-              <label for="amount-done" class="col-lg-1">Amount Done</label>
-              <div class="col-lg-11">
-                <input type="amount-done" id="amount-done" class="form-control" required>
+              <label for="weight" class="col-lg-1">Weight</label>
+              <div class="col-lg-6">
+                <input type="weight" id="weightInput" class="form-control" required>
               </div>
             </div>
-            <div class="form-group row">
-              <label for="set-rep" class="col-lg-1">Sets and Reps</label>
-              <div class="col-lg-11">
-                <input type="set-rep" id="set-rep" class="form-control" >
+            <div class="form-group row ">
+              <label for="set" class="col-lg-1">Sets</label>
+              <div class="form-group column">
+                <div class="col-lg-6">
+                  <input type="set" id="setsInput" class="form-control" >
+                </div>
               </div>
+              <label for="reps" class="col-lg-1">Reps</label>
+              <div class="form-group column">
+                <div class="col-lg-6">
+                  <input type="reps" id="repsInput" class="form-control" >
+                </div>
+              </div>
+
             </div>
             <div class="form-group row">
               <label for="dateInput" class="col-lg-1">Date Completed</label>
-              <div class="col-lg-11">
+              <div class="col-lg-6">
                 <input type="date" id="dateInput" class="form-control" required>
               </div>
-
+              </div>
             <!--got the form code from problem set 5.-->
-            <button type="submit" class="btn btn-dark m-3">Submit Workout</button>
+            
+            <button id="submit-button" type="submit" class="btn btn-dark m-3">Submit Workout</button>
+            
         </form>
       </section>
       <section class="container-fluid"  class="main-2"> 
         <!--View section-->
         <div class="row">
-          <div class="col-md p-3">
+          <div id="views" class="col-md p-3 container">
             <img src="img/graph.jpg" alt="graph placeholder" class="mx-auto d-block">
           </div>
 
           <div class="col-md p-3">
-            <img src="img/table.jpg" alt="table placeholder" class="mx-auto d-block">
+            <button id="graph-button" type="graph" class="btn btn-dark m-3 mx-auto d-block">Show Graph of Progress</button>
+            <button id="frequency-button" type="frequency" class="btn btn-dark m-3 mx-auto d-block">Interpret Workout History</button>
           </div>
         </div>
       </section>
+      
     </div>
     <footer>
       <p>&copy; 2020 John Rosen, Jack Weinstein</p>
@@ -73,5 +87,9 @@
       <p>&copy; <cite><a href="https://unsplash.com/photos/h4i9G-de7Po">John Arano</a></cite> </p>
       <p>&copy; <cite><a href="https://pixabay.com/photos/bodybuilder-muscles-fitness-925770/">StockSnap</a></cite></p>
     </footer>
+    <script src="./src/index.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.2.8/es6-promise.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 </body>
 </html>
