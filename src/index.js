@@ -1,17 +1,31 @@
 'use strict';
 
 //initial state
-function blah() {
-    let ret = fetch("https://raw.githubusercontent.com/info340a-su20/project-01-johnrosen00/master/src/fakeinfo.js");
-    return ret;
+function asyncHistory() {
+    let ret = fetch("https://raw.githubusercontent.com/info340a-su20/project-01-johnrosen00/master/src/fakeinfo%20copy.json")
+        .then(
+            (response) => {
+                return response.json();
+            })
+        .then(
+            (response)=>{
+                state.history = response.content;
+            })
+        .catch(
+            (err)=> {
+                console.error(err.message);
+                state.history=accessHistory();
+            }
+        ).then(renderFreqTable);
 }
 
 let state = {
     current:{type:"", weight:0, sets:0, reps:0, date:""},
-    history:accessHistory()
+    history:[]
 };
 
-renderFreqTable();
+asyncHistory();
+
 //handle form:
 
 let formElements = {
@@ -23,7 +37,7 @@ let formElements = {
 }
 
 let liftKeys = ["type", "weight", "sets", "reps", "date"];
-//object.keys() does not work in a lot of browsers apparently :(
+//Object.keys(sampleObject) does not work in a lot of browsers apparently :(
 
 let form = document.querySelector("form");
 let submit = document.querySelector("#submit-button");
@@ -46,9 +60,10 @@ submit.addEventListener("click", (event)=> {
     renderFreqTable();
 });
 
+
+//render inputs
 function renderInput(item) {
     formElements[item].value = state.current[item];
-    console.log("form elem " + formElements[item]);
 }
 
 function renderAllInputs(){
@@ -58,17 +73,16 @@ function renderAllInputs(){
 }
 
 //handle buttons
-/*
-let g = document.querySelector("#graph-button");
-//graphbutton
-g.addEventListener("click",
+
+let graphButton = document.querySelector("#graph-button");
+graphButton.addEventListener("click",
     (event) => {
         event.preventDefault();
+        renderGraphGate();
     }
-);*/
+);
 
 let frequencyButton = document.querySelector("#frequency-button");
-//frequencybutton
 
 frequencyButton.addEventListener("click",(event) => {
     event.preventDefault();
@@ -77,16 +91,9 @@ frequencyButton.addEventListener("click",(event) => {
 
 
 
-//handle "past" data
+//handle "past" data if fetch fails.
+//same data as response.content lol
 function accessHistory(){
-//     let ret = fetch("https://raw.githubusercontent.com/info340a-su20/project-01-johnrosen00/master/src/fakeinfo.json")
-//         .then(
-//             (response) => {
-//                 return response.json();
-//             }
-//         );
-    //array of lift objects
-    
     let lifts = [
         {"type":"Hack Squat", "weight":225, "sets":5, "reps":8, "date":"2019-05-22"},
         {"type":"Squat", "weight":315, "sets":5, "reps":5, "date":"2019-05-25"},
@@ -118,12 +125,110 @@ function accessHistory(){
 
 //handle views:
 
-/*
-function renderGraph(){
-    viewContent.innerHTML = "";
+//checks to see if data is eligible to be used for graph
+function renderGraphGate(){
+    let views = document.querySelector("#views");
+    views.innerHTML = "";
+    //find lift that is most frequently performed.
+    //largely similar to the start of renderFreqTable
+    let uniqueKeys = [];
 
-}*/
+    state.history.forEach(
+        (item) => {
+            if(!uniqueKeys.includes(item.type.toUpperCase())) {
+                uniqueKeys.push(item.type.toUpperCase());
+            }
+        }
+    );
 
+    
+    let freq = {};
+
+    state.history.forEach(
+        (item) => {
+            let bold = item.type.toUpperCase();
+            if(!freq[bold]){
+                freq[bold] = 1;
+            } else {
+                freq[bold]++;
+            }
+        }
+    );
+    
+    let highFreq = [];
+    //generate array of lifts that have been performed frequently
+    uniqueKeys.forEach(
+        (item) => {
+            if(freq[item] > 3){
+                highFreq.push(item);
+            }
+        }
+    );
+
+    if(highFreq.length < 1){
+        let errorMessage = document.createElement("p");
+        errorMessage.classList.add("alert");
+        errorMessage.textContent = "No lifts done frequently enough to generate graph"
+        views.appendChild(errorMessage);
+    } else{
+        renderGraph(highFreq, views);
+    }
+}
+
+//renders graph
+function renderGraph(keys, views){
+    let data = [];
+    let layout = {
+        title:"Progress",
+        xaxis:{title:"Milliseconds elapsed since 1970-01-01"},
+        yaxis:{title:"Weight lifted * total reps done"},
+        height:500,
+        autosize:true
+    }
+
+    keys.forEach(
+        (item) => {
+            data.push(createTrace(item));
+        }
+    )
+
+    Plotly.newPlot('views', data, layout);
+}
+
+//creates a trace object
+function createTrace(name){
+    //example trace
+    // let trace1 = {
+    //     x: [1, 2, 3, 4],
+    //     y: [10, 15, 13, 17],
+    //     type: 'scatter'
+    //   };
+
+    //x = date
+    //y = weight lifted * sets * reps
+
+    let dateArray = []; 
+    let volumeArray = [];
+
+    state.history.forEach(
+        (item) => {
+            if(item.type.toUpperCase() == name) {
+                dateArray.push(Date.parse(item.date));
+                volumeArray.push(item.sets*item.reps*item.weight);
+            }
+        }
+    );
+
+    let trace = {
+        x:dateArray,
+        y:volumeArray,
+        type:"scatter",
+        "name":name
+    };
+
+    return trace;
+}
+//hehe
 function renderFreqTable(){
     //big boy
     document.querySelector("#views").innerHTML = "";
@@ -150,7 +255,8 @@ function renderFreqTable(){
                 freq[bold]++;
             }
         }
-    )
+    );
+
     let weight = {};
 
     state.history.forEach(
@@ -164,13 +270,12 @@ function renderFreqTable(){
                 }
             }
         }
-    )
-
-    console.log(weight);
-    console.log(freq);
+    );
     
     
     //there has to be a faster way of doing this :(
+
+    //table framework
     let table = document.createElement("table");
     table.classList.add("table");
     table.classList.add("table-dark");
@@ -186,8 +291,9 @@ function renderFreqTable(){
     colHead2.textContent = "Number of Times Performed";
     let colHead3 = document.createElement("th");
     colHead3.scope = "col";
-    colHead3.textContent = "Heaviest Weight";
+    colHead3.textContent = "Heaviest Weight Lifted";
 
+    //append head content
     row1.appendChild(colHead1);
     row1.appendChild(colHead2);
     row1.appendChild(colHead3)
