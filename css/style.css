@@ -60,6 +60,20 @@ form {
     background-color:none!important;
 }
 
+.btn:hover {
+    background-color: #eee;
+    color: black;
+}
+
+#yoke-icon {
+    background-image: url('../img/yoke-icon.png');
+    background-size: 100%;
+    width: 65px;
+    height: 65px;
+    display: inline-block;
+    margin-left: .2em;
+}
+
 @media (min-width:720px) { 
     html {
         height:100%;
